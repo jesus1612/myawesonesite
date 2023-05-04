@@ -1,0 +1,6 @@
+name: Deploy With S3
+
+on:
+  push:
+    branches:
+      - main
