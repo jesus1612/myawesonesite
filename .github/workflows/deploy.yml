@@ -15,9 +15,10 @@ jobs:
         node-version: 18
     - run: npm ci
     - run: npm run build
-    - uses: aws-actions/configure-aws-credentials@v2
+    - uses: aws-actions/configure-aws-credentials@v3
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1
+        ROLE_TO_ASSUME: ${{ secrets.AWS_ROLE_FOR_GITHUB}}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: us-east-1
     - run: aws s3 sync ./out s3://myawesonesite
